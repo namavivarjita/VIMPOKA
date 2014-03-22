@@ -20,7 +20,12 @@ Bundle '2072/PHP-Indenting-for-VIm'
 
 set history=200
 set t_Co=256
-set bg=dark
+if has("gui_running")
+    set background=light
+else
+    set background=dark
+    let g:solarized_termcolors=256
+endif
 
 " Enable filetype plugins
 filetype plugin on
@@ -97,7 +102,6 @@ if has("gui_running")
     set guioptions-=m
     set guioptions-=r
     set guioptions-=L
-    set t_Co=256
     set guitablabel=%M\ %t
 endif
 
