@@ -13,19 +13,22 @@ Bundle 'gmarik/vundle'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
-Bundle 'altercation/vim-colors-solarized'
+"Bundle 'altercation/vim-colors-solarized'
 Bundle 'othree/html5.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle '2072/PHP-Indenting-for-VIm'
+" Stevelosh Badwolf
+Bundle 'sjl/badwolf'
+
 
 set history=200
 set t_Co=256
-if has("gui_running")
-    set background=light
-else
-    set background=dark
-    let g:solarized_termcolors=256
-endif
+"if has("gui_running")
+"    set background=light
+"else
+"    set background=dark
+"    let g:solarized_termcolors=256
+"endif
 
 " Enable filetype plugins
 filetype plugin on
@@ -57,6 +60,7 @@ set wildmenu
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
 set wildignore+=.git\*,.ht\*,.svn\*
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
 " Always show current position
 set ruler
@@ -106,12 +110,15 @@ if has("gui_running")
 endif
 
 " A bit of left margin
-"set foldcolumn=1
+set foldcolumn=1
 
 " => Colors
 " Enable syntax highlighting
 syntax enable
-colorscheme solarized 
+set background=dark
+let g:badwolf_tabline = 2
+let g:badwolf_html_link_underline = 0
+colorscheme badwolf
 
 " Set encoding 
 set encoding=utf8
@@ -148,7 +155,7 @@ set ai
 set si
 
 " Wrap lines
-set wrap
+set nowrap
 
 " Movement
 " Treat long lines as break lines (useful moving between them)
@@ -242,4 +249,25 @@ nnoremap Q <nop>
 " K not starts man page
 nnoremap K <nop>
 
+" Steve Losh .vim
+set nonumber
+set list
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set showbreak=↪
+set splitbelow
+set splitright
+
+" Save when losing focus
+au FocusLost * :silent! wall
+
+" Resize splits when the window is resized
+au VimResized * :wincmd =
+
+" I constantly hit "u" in visual mode when I mean to "y". Use "gu" for those rare occasions.
+" From https://github.com/henrik/dotfiles/blob/master/vim/config/mappings.vim
+vnoremap u <nop>
+vnoremap gu u
+
+" Set the statusline color
+hi StatusLine ctermbg=grey ctermfg=black
 
