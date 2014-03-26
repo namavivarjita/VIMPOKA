@@ -1,8 +1,5 @@
-"My VIM 
+" POKA VIM CONFIG 
 
-" =>
-" Sets how many lines of history VIM has to remember
-"
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle/
@@ -10,9 +7,9 @@ call vundle#rc()
 
 " VUNDLE
 Bundle 'gmarik/vundle'
-Bundle 'Lokaltog/vim-easymotion'
+"Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 "Bundle 'altercation/vim-colors-solarized'
 Bundle 'othree/html5.vim'
 Bundle 'cakebaker/scss-syntax.vim'
@@ -40,6 +37,12 @@ set autoread
 " Map <leader> to <,>
 let mapleader = ","
 let g:mapleader = ","
+
+" Don't move around in insert mode
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
 
 " Fast saving
 nmap <leader>w :w!<cr>
@@ -93,6 +96,11 @@ set lazyredraw
 " Show matching brackets when text indicator is over them
 set showmatch
 
+" set relativenumbers
+set nu 
+set ttyfast
+set cursorline
+
 " No annoying beeps
 set noerrorbells
 set novisualbell
@@ -110,7 +118,7 @@ if has("gui_running")
 endif
 
 " A bit of left margin
-set foldcolumn=1
+"set foldcolumn=1
 
 " => Colors
 " Enable syntax highlighting
@@ -199,13 +207,13 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Return to last edit position when opening a file
-autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \ exe "normal! g~\"" |
-    \ endif
-
-" Remember info about open buffers on close
-set viminfo^=%
+"autocmd BufReadPost *
+"    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"    \ exe "normal! g~\"" |
+"    \ endif
+"
+"" Remember info about open buffers on close
+"set viminfo^=%
 
 " Statusline
 " Always show the status line
@@ -249,12 +257,15 @@ nnoremap Q <nop>
 " K not starts man page
 nnoremap K <nop>
 
+" Syntastic
+"let g:syntastic_enable_sign=1
+"let g:syntastic_mode_active={ 'mode': 'active', 'active_filetype': ['php'],}
+"let g:syntastic_php_checkers=['php', 'phpcs']
+"let g:syntastic_php_phpcs_args="--standard=PSR2 -n --report=csv"
 " Steve Losh .vim
-set nonumber
 set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
-set splitbelow
 set splitright
 
 " Save when losing focus
@@ -270,4 +281,4 @@ vnoremap gu u
 
 " Set the statusline color
 hi StatusLine ctermbg=grey ctermfg=black
-
+hi StatusLine guibg=grey guifg=black
