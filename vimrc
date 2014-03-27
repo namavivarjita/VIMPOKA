@@ -7,10 +7,7 @@ call vundle#rc()
 
 " VUNDLE
 Bundle 'gmarik/vundle'
-"Bundle 'Lokaltog/vim-easymotion'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/syntastic'
-"Bundle 'altercation/vim-colors-solarized'
 Bundle 'othree/html5.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle '2072/PHP-Indenting-for-VIm'
@@ -20,12 +17,6 @@ Bundle 'sjl/badwolf'
 
 set history=200
 set t_Co=256
-"if has("gui_running")
-"    set background=light
-"else
-"    set background=dark
-"    let g:solarized_termcolors=256
-"endif
 
 " Enable filetype plugins
 filetype plugin on
@@ -50,9 +41,6 @@ nmap <leader>w :w!<cr>
 " jj esc
 imap jj <Esc>
 
-" :W sudo saves the file
-" (useful for handling the permission-denied error)
-"command W w !sudo tee % > /dev/null
 " => VIM UX
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -66,10 +54,12 @@ set wildignore+=.git\*,.ht\*,.svn\*
 set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg
 
 " Always show current position
-set ruler
+"set ruler
 
-" Height of the command bar
-"set cmdheight=2
+" Highlight the 81st column of wide lines...
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -117,8 +107,6 @@ if has("gui_running")
     set guitablabel=%M\ %t
 endif
 
-" A bit of left margin
-"set foldcolumn=1
 
 " => Colors
 " Enable syntax highlighting
@@ -170,12 +158,14 @@ set nowrap
 map j gj
 map k gk
 
-" Map <Space> to / (search) Ctrl-<Space> to ? (backward search)
-map <space> /
-map <c-space> ?
+"====[ Swap v and CTRL-V, because Block mode is more useful that Visual mode "]======
 
-" Disable highlight when <leader><space> is pressed
-map <silent> <leader><space> :noh<cr>:call clearmatches()<cr>
+nnoremap    v   <C-V>
+nnoremap <C-V>     v
+
+vnoremap    v   <C-V>
+vnoremap <C-V>     v
+
 
 " Move among windows
 map <C-j> <C-W>j
@@ -187,7 +177,7 @@ map <C-l> <C-W>l
 map <leader>bd :Bclose<cr>
 
 " Buffer cycle
-map <leader>n :bnext<cr>
+map <silent> <leader><space> :bnext<cr>
 
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
@@ -206,12 +196,7 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Return to last edit position when opening a file
-"autocmd BufReadPost *
-"    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"    \ exe "normal! g~\"" |
-"    \ endif
-"
+
 "" Remember info about open buffers on close
 "set viminfo^=%
 
@@ -233,7 +218,7 @@ endfunction
 " Misc
 " Quickly open a buffer
 map <leader>q :e ~/buffer<cr>
-
+"
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
@@ -257,11 +242,6 @@ nnoremap Q <nop>
 " K not starts man page
 nnoremap K <nop>
 
-" Syntastic
-"let g:syntastic_enable_sign=1
-"let g:syntastic_mode_active={ 'mode': 'active', 'active_filetype': ['php'],}
-"let g:syntastic_php_checkers=['php', 'phpcs']
-"let g:syntastic_php_phpcs_args="--standard=PSR2 -n --report=csv"
 " Steve Losh .vim
 set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
@@ -282,3 +262,4 @@ vnoremap gu u
 " Set the statusline color
 hi StatusLine ctermbg=grey ctermfg=black
 hi StatusLine guibg=grey guifg=black
+
