@@ -9,7 +9,6 @@ Bundle 'gmarik/vundle'
 Bundle 'othree/html5.vim'
 Bundle 'cakebaker/scss-syntax.vim'
 Bundle '2072/PHP-Indenting-for-VIm'
-"Bundle 'sjl/badwolf'
 Bundle 'hickop/vim-hickop-colors'
 Bundle 'kien/ctrlp.vim'
 " VUNDLE packages end <<
@@ -92,9 +91,6 @@ highlight ColorColumn ctermbg=white
 call matchadd('ColorColumn', '\%81v', 100)
 syntax enable
 set background=dark
-"let g:badwolf_tabline = 2
-"let g:badwolf_html_link_underline = 0
-"colorscheme badwolf
 colorscheme hickop
 
 " Key Mappings >>
